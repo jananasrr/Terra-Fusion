@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# Hide .htaccess file
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Redirect to public folder
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L]
+
+# Custom error pages
+ErrorDocument 404 /public/index.php
+ErrorDocument 500 /public/index.php
